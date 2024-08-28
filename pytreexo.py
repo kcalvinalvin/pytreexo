@@ -106,13 +106,9 @@ def root_position(numleaves: int, row: int, total_rows: int) -> int:
 
 
 def detect_row(position: int, total_rows: int) -> int:
-    marker = 1 << total_rows
-    h = 0
-    while position & marker != 0:
-        marker >>= 1
-        h += 1
-
-    return h
+    for row in range(total_rows, -1, -1):
+        rowbit = 1 << row
+        if rowbit & position == 0: return total_rows-row
 
 
 def root_present(numleaves: int, row: int) -> bool:
